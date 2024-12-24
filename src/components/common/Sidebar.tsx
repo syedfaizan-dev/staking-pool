@@ -1,5 +1,7 @@
+import Link from 'next/link';
 import React from 'react';
-import { FaCoins, FaGift, FaWallet, FaHistory, FaEnvelope, FaTachometerAlt } from 'react-icons/fa';
+import { BsWalletFill } from 'react-icons/bs';
+import { FaCoins, FaGift } from 'react-icons/fa';
 
 interface MenuItem {
   label: string;
@@ -9,12 +11,9 @@ interface MenuItem {
 
 const Sidebar: React.FC = () => {
   const menuItems: MenuItem[] = [
+    { label: "My Wallet", href: "/wallet", Icon: BsWalletFill },
     { label: "Staking Pools", href: "/staking-pools", Icon: FaCoins },
     { label: "Rewards", href: "/rewards", Icon: FaGift },
-    { label: "My Staking", href: "/my-staking", Icon: FaWallet },
-    { label: "Transactions", href: "/transactions", Icon: FaHistory },
-    { label: "Contact", href: "/contact", Icon: FaEnvelope },
-    { label: "Dashboard", href: "/dashboard", Icon: FaTachometerAlt }
   ];
 
   return (
@@ -24,7 +23,7 @@ const Sidebar: React.FC = () => {
         {menuItems.map(({ label, href, Icon }) => (
           <li key={label} className="flex items-center space-x-3">
             <Icon />
-            <a href={href} className="hover:text-gray-300">{label}</a>
+            <Link href={href} className="hover:text-gray-300">{label}</Link>
           </li>
         ))}
       </ul>
