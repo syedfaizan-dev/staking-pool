@@ -1,14 +1,16 @@
-"use client"
+"use client";
 import { Account } from "@/components/Account";
 import ConnectWallet from "@/components/ConnectWallet";
 
 export default function Page() {
-    return (
-        <div className="grid grid-cols-1 gap-8 p-8">
-            <div className="flex justify-center">
-                <ConnectWallet />
-            </div>
-            <Account />
+  return (
+    <div className="min-h-screen p-8">
+      <div className="max-w-md mx-auto">
+        <div className="flex justify-center mb-4">
+          <ConnectWallet />
         </div>
-    );
+        <Account />
+      </div>
+    </div>
+  );
 }
