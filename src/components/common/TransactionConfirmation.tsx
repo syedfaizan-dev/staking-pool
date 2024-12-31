@@ -24,15 +24,15 @@ export default function TransactionConfirmation({ hash }: { hash: `0x${string}` 
 
     return (
         hash && (
-            <div className="mt-5 p-4 border rounded-lg max-w-full overflow-hidden relative">
+            <div className="mt-5 p-4 border border-gray-600 rounded-lg max-w-full overflow-hidden relative">
                 <div className="flex items-center justify-between mb-3">
-                    <div className="font-semibold text-lg text-gray-700 flex items-center">
+                    <div className="font-semibold text-lg  flex items-center">
                         Transaction Status
                     </div>
                     <div className="flex flex-row space-x-4">
                         <button
                             onClick={copyToClipboard}
-                            className="text-gray-600 hover:text-blue-500 flex items-center"
+                            className="flex items-center"
                             title="Copy to clipboard"
                         >
                             <FiCopy className="mr-1" />
@@ -41,7 +41,7 @@ export default function TransactionConfirmation({ hash }: { hash: `0x${string}` 
                     </div>
                 </div>
 
-                <div className="p-3 bg-gray-50 border rounded break-words text-sm text-gray-800">
+                <div className="p-3 bg-zinc-800 rounded break-words text-sm">
                     <strong>Transaction Hash:</strong> {hash}
                 </div>
 
@@ -64,7 +64,7 @@ export default function TransactionConfirmation({ hash }: { hash: `0x${string}` 
                         <FiXCircle size={20} className="text-red-600 mr-2" />
                         <div>
                             <div className="text-red-600 font-semibold">Transaction Failed</div>
-                            <div className="text-gray-700">
+                            <div className="">
                                 {failureReason
                                     ? `Reason: ${failureReason}`
                                     : error?.message || "An unknown error occurred."}
@@ -74,7 +74,7 @@ export default function TransactionConfirmation({ hash }: { hash: `0x${string}` 
                 )}
 
                 {status && (
-                    <div className="mt-4 text-gray-600 text-sm">
+                    <div className="mt-4  text-sm">
                         <strong>Status:</strong> {status}
                     </div>
                 )}

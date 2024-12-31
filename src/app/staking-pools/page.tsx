@@ -19,8 +19,8 @@ export default function Page() {
         <>
             <div className="flex justify-center py-8">
                 <Card>
-                    <h1 className="text-3xl font-semibold text-center text-gray-800 mb-6">Staking Pools</h1>
-                    <p className="text-center text-gray-600 mb-8">Choose a pool to stake your tokens and earn rewards based on your staking duration.</p>
+                    <h1 className="text-3xl font-semibold text-center mb-6">Staking Pools</h1>
+                    <p className="text-center  mb-8">Choose a pool to stake your tokens and earn rewards based on your staking duration.</p>
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                         <Button
                             onClick={openFixModal}
@@ -37,12 +37,11 @@ export default function Page() {
                     </div>
 
                     {/* Instructions Section */}
-                    <div className="mt-8 p-4 bg-gray-100 rounded-lg">
-                        <h2 className="text-2xl font-semibold text-gray-800 mb-4">Staking Instructions</h2>
-
+                    <div>
+                        <h2 className="text-2xl font-semibold mb-4">Staking Instructions</h2>
                         <div className="mb-6">
-                            <h3 className="text-xl font-semibold text-gray-700">Fixed Pool:</h3>
-                            <p className="text-gray-600">
+                            <h3 className="text-xl font-semibold ">Fixed Pool:</h3>
+                            <p className="">
                                 - Stake any amount greater than 0 tokens.<br />
                                 - After 2 days, you can claim your staked amount.<br />
                                 - Reward is 2 Tokens.<br />
@@ -50,8 +49,8 @@ export default function Page() {
                             </p>
                         </div>
                         <div className="mb-6">
-                            <h3 className="text-xl font-semibold text-gray-700">Flexible Pool:</h3>
-                            <p className="text-gray-600">
+                            <h3 className="text-xl font-semibold ">Flexible Pool:</h3>
+                            <p className="">
                                 - Stake between 2 and 50 tokens.<br />
                                 - Only one stake is allowed at a time.<br />
                                 - The reward depends on the duration of the stake:<br />

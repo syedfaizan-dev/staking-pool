@@ -24,7 +24,7 @@ export function Account() {
   if (!isConnected) {
     return (
       <Card>
-        <div className="text-center text-gray-600">
+        <div className="text-center ">
           <p className="text-lg font-semibold">You are not connected</p>
           <p>Click "Connect Wallet" to get started!</p>
         </div>
@@ -45,12 +45,12 @@ export function Account() {
             {ensName || "Unnamed Account"}
           </h2>
           <div className="flex flex-row space-x-4">
-            <p className="text-gray-500">
+            <p>
               {address?.slice(0, 6)}...{address?.slice(-4)}
             </p>
             <button
               onClick={copyToClipboard}
-              className="text-gray-600 hover:text-gray-500 flex items-center"
+              className="flex items-center"
               title="Copy to clipboard"
             >
               <FiCopy className="mr-1" />
@@ -61,10 +61,10 @@ export function Account() {
       </div>
 
       <div className="flex flex-col space-y-2">
-        <p className="text-gray-700 font-medium">
+        <p className=" font-medium">
           <b>Connector: </b> {connector?.name}
         </p>
-        <p className="text-gray-700 font-medium">
+        <p className=" font-medium">
           <b>Status: </b> {status}
         </p>
         <div>
@@ -72,7 +72,7 @@ export function Account() {
         </div>
         <div className="flex items-center space-x-4">
           <button
-            className="flex items-center space-x-2 text-gray-600 hover:text-gray-800"
+            className="flex items-center space-x-2  hover:text-gray-800"
             onClick={() => window.open(`https://etherscan.io/address/${address}`, "_blank")}
           >
             <FaQrcode />

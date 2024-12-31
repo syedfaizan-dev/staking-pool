@@ -25,7 +25,7 @@ export default function StakingPool({
   return (
     <div className="text-center">
       <h2 className="text-2xl font-semibold mb-4">{title}</h2>
-      <p className="text-gray-600 mb-6">{desc}</p>
+      <p className=" mb-6">{desc}</p>
       <Input placeholder="Staking Amount" onChange={handleChange} value={amount} />
       <Button variant="primary" onClick={handleClick} >
         Stake

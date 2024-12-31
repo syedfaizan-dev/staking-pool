@@ -1,6 +1,7 @@
 "use client"
 import React, { ReactNode } from 'react';
 import { CgClose } from 'react-icons/cg';
+import Card from './Card';
 
 interface ModalProps {
   isOpen: boolean;
@@ -19,18 +20,18 @@ const Modal: React.FC<ModalProps> = ({ isOpen, onClose, children }) => {
 
   return (
     <div
-      className="fixed inset-0 bg-gray-600 bg-opacity-50 flex justify-center items-center"
+      className="fixed inset-0 bg-zinc-800 bg-opacity-80 flex justify-center items-center"
       onClick={handleClose}
     >
-      <div className="bg-white rounded-lg shadow-lg w-2/6 p-6">
+      <Card>
         <button
           onClick={onClose}
-          className="text-gray-600 text-2xl"
+          className=" text-2xl"
         >
           <CgClose/>
         </button>
         {children}
-      </div>
+      </Card>
     </div>
   );
 };
