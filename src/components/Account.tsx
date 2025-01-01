@@ -38,7 +38,7 @@ export function Account() {
         <img
           src={ensAvatar || "default-avatar.jpg"}
           alt="ENS Avatar"
-          className="w-16 h-16 rounded-full border-2 border-gray-300"
+          className="w-20 h-20 rounded-full border border-black"
         />
         <div>
           <h2 className="text-xl font-semibold">
@@ -61,10 +61,10 @@ export function Account() {
       </div>
 
       <div className="flex flex-col space-y-2">
-        <p className=" font-medium">
+        <p className="font-medium">
           <b>Connector: </b> {connector?.name}
         </p>
-        <p className=" font-medium">
+        <p className="font-medium">
           <b>Status: </b> {status}
         </p>
         <div>
@@ -72,7 +72,7 @@ export function Account() {
         </div>
         <div className="flex items-center space-x-4">
           <button
-            className="flex items-center space-x-2  hover:text-gray-800"
+            className="flex items-center space-x-2 hover:text-gray-300"
             onClick={() => window.open(`https://etherscan.io/address/${address}`, "_blank")}
           >
             <FaQrcode />

@@ -24,13 +24,13 @@ export default function Page() {
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                         <Button
                             onClick={openFixModal}
-                            variant="primary"
+                            variant="frost"
                         >
                             Fixed Pool
                         </Button>
                         <Button
                             onClick={openFlexModal}
-                            variant="success"
+                            variant="neon"
                         >
                             Flexible Pool
                         </Button>

@@ -5,7 +5,7 @@ import Button from './common/Button';
 
 const ConnectWallet = () => {
   return (
-    <Button onClick={() => modal.open()}>
+    <Button variant='forest' onClick={() => modal.open()}>
       Connect Wallet
     </Button>
   )

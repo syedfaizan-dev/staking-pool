@@ -4,6 +4,7 @@ import "./globals.css";
 import Sidebar from "@/components/common/Sidebar";  // Import Sidebar
 import { headers } from "next/headers";
 import ContextProvider from "@/context";
+import 'react-loading-skeleton/dist/skeleton.css';
 
 const geistSans = Geist({
   variable: "--font-geist-sans",

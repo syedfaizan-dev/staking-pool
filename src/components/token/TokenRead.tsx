@@ -49,8 +49,8 @@ export default function TokenRead() {
                     className={`cursor-pointer ${isRefetching ? 'animate-spin' : ''}`}
                     title="Refresh"
                 />
-                <span className='flex items-center gap-2'>Your Balance: {isPending || isRefetching ? <Skeleton/> : balance?.result?.toString() || 'N/A'}</span>
-                <span className='flex items-center gap-2'>Total Supply: {isPending || isRefetching ? <Skeleton/> : totalSupply?.result?.toString() || 'N/A'}</span>
+                <span className='flex items-center gap-2'>Your Balance: {isPending || isRefetching ? <Skeleton height={7} width={100}/> : balance?.result?.toString() || 'N/A'}</span>
+                <span className='flex items-center gap-2'>Total Supply: {isPending || isRefetching ? <Skeleton height={7} width={100}/> : totalSupply?.result?.toString() || 'N/A'}</span>
             </div>
         );
     };
