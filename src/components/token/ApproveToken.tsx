@@ -8,10 +8,10 @@ import Button from "../common/Button";
 import Error from "../common/Error";
 import TransactionConfirmation from "../common/TransactionConfirmation";
 
-const ApproveToken = () => {
+const ApproveToken = ({spenderProp}: {spenderProp?: string}) => {
     const { address } = useAccount();
 
-    const [spender, setSpender] = React.useState<string>("");
+    const [spender, setSpender] = React.useState<string>(spenderProp ? spenderProp : "");
     const [amount, setAmount] = React.useState<string>("");
 
     const {
@@ -47,6 +47,7 @@ const ApproveToken = () => {
                 placeholder="Spender Address"
                 value={spender}
                 onChange={(e) => setSpender(e.target.value)}
+                disabled={!!spenderProp}
             />
             <Input
                 type="number"

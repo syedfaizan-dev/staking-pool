@@ -29,7 +29,7 @@ export default function TokenWrite() {
 
     return (
         <Card>
-            <h2 className="text-2xl font-semibold mb-4">Buy PET Token</h2>
+            <h2 className="text-2xl font-semibold mb-4">Buy PYRO Token</h2>
             <Button
                 disabled={isPending || !address}
                 onClick={submit}

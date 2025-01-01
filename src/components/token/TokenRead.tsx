@@ -57,7 +57,7 @@ export default function TokenRead() {
 
     return (
         <Card>
-            <h2 className="text-2xl font-semibold mb-4">PET Token</h2>
+            <h2 className="text-2xl font-semibold mb-4">PYRO Token</h2>
             {isError || isRefetchError && <Error error={(error as BaseError)?.shortMessage || 'An error occurred.'} />}
             {renderContent()}
         </Card>

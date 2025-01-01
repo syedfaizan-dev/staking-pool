@@ -4,6 +4,8 @@ import Modal from "@/components/common/Modal";
 import Card from "@/components/common/Card";
 import Button from "@/components/common/Button";
 import StakingPool from "@/components/StakingPool";
+import { useAccount, useWriteContract } from "wagmi";
+import { poolConfig } from "@/config/poolConfig";
 
 export default function Page() {
     const [isFlex, setIsFlex] = useState(false);
@@ -68,14 +70,14 @@ export default function Page() {
                 <StakingPool
                     title="Fixed Pool Staking"
                     desc="Here you can stake your tokens in a fixed pool with guaranteed returns."
-                    onStake={(amount: string) => { console.log(amount) }}
+                    contractFunction="stakeFixed"
                 />
             </Modal>
             <Modal isOpen={isFlex} onClose={closeFlexModal}>
                 <StakingPool
                     title="Flexible Pool Staking"
                     desc="Here you can stake tokens in a flexible pool with variable returns."
-                    onStake={(amount: string) => { console.log(amount) }}
+                    contractFunction="stakeFlexible"
                 />
             </Modal>
         </>
