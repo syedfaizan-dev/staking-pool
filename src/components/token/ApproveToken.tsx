@@ -51,7 +51,7 @@ const ApproveToken = ({spenderProp}: {spenderProp?: string}) => {
                 min="0"
             />
             <Button
-                disabled={isPending || !address || !spender || !amount}
+                disabled={isPending || !address || !spender || !amount || !address}
                 onClick={submit}
                 isLoading={isPending}
             >

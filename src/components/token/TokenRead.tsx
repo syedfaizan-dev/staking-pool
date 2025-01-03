@@ -3,6 +3,7 @@ import Card from '../common/Card';
 import Error from '../common/Error';
 import { tokenConfig } from '@/config/tokenConfig';
 import { TbRefresh } from 'react-icons/tb';
+import WalletNotConnect from '../common/WalletNotConnect';
 
 export default function TokenRead() {
     const { address } = useAccount();
@@ -37,7 +38,7 @@ export default function TokenRead() {
 
     const renderContent = () => {
         if (!address) {
-            return <span>Please connect your wallet first.</span>;
+            return <WalletNotConnect/>
         }
 
         return (

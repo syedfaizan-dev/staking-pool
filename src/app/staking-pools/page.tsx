@@ -4,8 +4,6 @@ import Modal from "@/components/common/Modal";
 import Card from "@/components/common/Card";
 import Button from "@/components/common/Button";
 import StakingPool from "@/components/StakingPool";
-import { useAccount, useWriteContract } from "wagmi";
-import { poolConfig } from "@/config/poolConfig";
 
 export default function Page() {
     const [isFlex, setIsFlex] = useState(false);
@@ -16,42 +14,29 @@ export default function Page() {
 
     const openFixModal = () => setIsFix(true);
     const closeFixModal = () => setIsFix(false);
-
+    
     return (
         <>
-            <div className="flex justify-center py-8">
-                <Card className="w-3/5">
-                    <h1 className="text-3xl font-semibold text-center mb-6">Staking Pools</h1>
-                    <p className="text-center  mb-8">Choose a pool to stake your tokens and earn rewards based on your staking duration.</p>
-                    <div className="flex justify-center gap-20">
-                        <Button
-                            onClick={openFixModal}
-                            variant="frost"
-                        >
-                            Fixed Pool
-                        </Button>
-                        <Button
-                            onClick={openFlexModal}
-                            variant="neon"
-                        >
-                            Flexible Pool
-                        </Button>
-                    </div>
-
-                    {/* Instructions Section */}
-                    <div>
-                        <h2 className="text-2xl font-semibold mb-4">Staking Instructions</h2>
+            <div className="p-8">
+                <h1 className="text-3xl font-semibold text-center mb-6">Staking Pools</h1>
+                <p className="text-center  mb-8">Choose a pool to stake your tokens and earn rewards based on your staking duration.</p>
+                <div className="flex gap-5 justify-center">
+                    <Card className="flex flex-col justify-between">                        
                         <div className="mb-6">
-                            <h3 className="text-xl font-semibold ">Fixed Pool:</h3>
+                            <h3 className="text-3xl font-semibold mb-4">Fixed Pool</h3>
                             <p className="">
                                 Stake any amount greater than 0 tokens.<br />
                                 After 2 days, you can claim your staked amount.<br />
                                 Reward is 2 Tokens.<br />
-                                Use <b>Get Reward</b> after 2 days to receive your reward.
                             </p>
                         </div>
+                        <Button onClick={openFixModal} variant="forest">
+                            Stake in Fixed Pool
+                        </Button>
+                    </Card>
+                    <Card className="flex flex-col justify-between">
                         <div className="mb-6">
-                            <h3 className="text-xl font-semibold ">Flexible Pool:</h3>
+                            <h3 className="text-3xl font-semibold mb-4">Flexible Pool</h3>
                             <p className="">
                                 Stake between 2 and 50 tokens.<br />
                                 Only one stake is allowed at a time.<br />
@@ -59,11 +44,13 @@ export default function Page() {
                                 &nbsp;&nbsp;&nbsp;• After 3-5 days: Receive a reward of 3 tokens.<br />
                                 &nbsp;&nbsp;&nbsp;• After 6-10 days: Receive a reward of 5 tokens.<br />
                                 &nbsp;&nbsp;&nbsp;• After 10+ days: Receive a reward of 7 tokens.<br />
-                                Use <b>Get Reward</b> after the staking period to claim your tokens and rewards.
                             </p>
                         </div>
-                    </div>
-                </Card>
+                        <Button onClick={openFlexModal} variant="sun">
+                            Stake in Flexible Pool
+                        </Button>
+                    </Card>
+                </div>
             </div>
 
             <Modal isOpen={isFix} onClose={closeFixModal}>
