@@ -13,6 +13,7 @@ import Modal from "./common/Modal";
 import ApproveToken from "./token/ApproveToken";
 import Link from "next/link";
 import { TbRefresh } from "react-icons/tb";
+import WalletNotConnect from "./common/WalletNotConnect";
 
 export default function StakingPool({
   title,
@@ -120,7 +121,8 @@ export default function StakingPool({
       <h2 className="text-2xl font-bold">{title}</h2>
       <p className="mb-6">{desc}</p>
 
-      <div className="mb-4">
+      {address ? <div>
+        <div className="mb-4">
         <Input
           type="number"
           placeholder="Enter staking amount"
@@ -191,6 +193,7 @@ export default function StakingPool({
       <Modal isOpen={isOpen} onClose={toggle}>
         <ApproveToken spenderProp={poolConfig.address} />
       </Modal>
+      </div> : <WalletNotConnect/>}
     </>
   );
 }
