@@ -26,7 +26,7 @@ const Modal: React.FC<ModalProps> = ({ isOpen, onClose, children }) => {
       <Card>
         <button
           onClick={onClose}
-          className=" text-2xl"
+          className=" text-2xl hover:bg-zinc-700 p-1 rounded-lg"
         >
           <CgClose/>
         </button>

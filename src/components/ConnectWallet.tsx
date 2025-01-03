@@ -2,11 +2,13 @@
 import React from 'react';
 import { modal } from '@/context';
 import Button from './common/Button';
+import { useAccount } from 'wagmi';
 
 const ConnectWallet = () => {
+  const { address } = useAccount()
   return (
-    <Button variant='forest' onClick={() => modal.open()}>
-      Connect Wallet
+    <Button variant='forest' shape='circle' onClick={() => modal.open()}>
+      {address ? 'Wallet Connected' : 'Connect Wallet'}
     </Button>
   )
 };

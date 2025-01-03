@@ -1,6 +1,6 @@
-export default function Card({children}: { children: React.ReactNode }) {
+export default function Card({children, className}: { children: React.ReactNode, className?: string }) {
     return (
-        <div className="w-auto p-6 bg-zinc-900 rounded space-y-3 text-white">
+        <div className={`w-auto p-6 bg-zinc-900 rounded space-y-3 text-white ${className}`}>
             {children}
         </div>
     );

@@ -12,6 +12,7 @@ import { tokenConfig } from "@/config/tokenConfig";
 import Modal from "./common/Modal";
 import ApproveToken from "./token/ApproveToken";
 import Link from "next/link";
+import { TbRefresh } from "react-icons/tb";
 
 export default function StakingPool({
   title,
@@ -39,6 +40,8 @@ export default function StakingPool({
     data: allowanceData,
     isLoading: isAllowanceLoading,
     error: allowanceError,
+    isRefetching: isAllowanceRefetching,
+    refetch: allowanceRefetch
   } = useReadContract({
     ...tokenConfig,
     functionName: "allowance",
@@ -52,6 +55,8 @@ export default function StakingPool({
     data: balanceData,
     isLoading: isBalanceLoading,
     error: balanceError,
+    isRefetching: isBalanceRefetching,
+    refetch: balanceRefetch
   } = useReadContract({
     ...tokenConfig,
     functionName: "balanceOf",
@@ -106,7 +111,10 @@ export default function StakingPool({
   const toggle = () => {
     setIsOpen((prev) => !prev);
   };
-
+  const onRefreshClick = async () => {
+    await allowanceRefetch();
+    await balanceRefetch();
+  };
   return (
     <div className="text-center">
       <h2 className="text-2xl font-semibold mb-4">{title}</h2>
@@ -142,8 +150,16 @@ export default function StakingPool({
           You cannot stake more than your allowance.
         </p>
       )}
+      <div className="mt-12 flex flex-row gap-2 items-center cursor-pointer" onClick={onRefreshClick}>
+        <TbRefresh
+          size={30}
+          className={`${isAllowanceRefetching || isBalanceRefetching || isBalanceLoading || isAllowanceLoading ? 'animate-spin' : ''}`}
+          title="Refresh"
+        />
+        <span>Refresh</span>
+      </div>
       {/* New sections for Allowance and Balance */}
-      <div className="mt-8 grid grid-cols-1 md:grid-cols-2 gap-4">
+      <div className="mt-4 grid grid-cols-1 md:grid-cols-2 gap-4">
         {/* Allowance Section */}
         <div className="p-4 border border-zinc-600 rounded-lg shadow-sm">
           <h3 className="text-lg font-semibold mb-2">Your Allowance For Pool</h3>

@@ -6,10 +6,10 @@ export default function Page() {
   return (
     <div className="min-h-screen p-8">
       <div className="max-w-4xl mx-auto">
-        <div className="flex justify-center mb-4">
+        <Account />
+        <div className="flex justify-center mt-4">
           <ConnectWallet />
         </div>
-        <Account />
       </div>
     </div>
   );

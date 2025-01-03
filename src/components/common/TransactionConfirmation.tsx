@@ -1,8 +1,12 @@
 import { useWaitForTransactionReceipt } from "wagmi";
 import { FiLoader, FiCheckCircle, FiXCircle, FiCopy } from "react-icons/fi";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { FaCheckCircle } from "react-icons/fa";
+import { BiLoaderAlt } from "react-icons/bi";
 
-export default function TransactionConfirmation({ hash }: { hash: `0x${string}` | undefined }) {
+export default function TransactionConfirmation(
+    { hash, onConfirmation }: 
+    { hash: `0x${string}` | undefined, onConfirmation?: ()=> {} }) {
     const {
         isLoading: isConfirming,
         isSuccess: isConfirmed,
@@ -21,7 +25,11 @@ export default function TransactionConfirmation({ hash }: { hash: `0x${string}` 
             setTimeout(() => setCopied(false), 1500);
         }
     };
-
+    useEffect(() => {
+        if (isConfirmed && onConfirmation) {
+            onConfirmation();
+        }
+    }, [isConfirmed, onConfirmation]);
     return (
         hash && (
             <div className="mt-5 p-4 border border-gray-600 rounded-lg max-w-full overflow-hidden relative">
@@ -46,25 +54,24 @@ export default function TransactionConfirmation({ hash }: { hash: `0x${string}` 
                 </div>
 
                 {isConfirming && (
-                    <div className="mt-3 flex items-center text-blue-500 font-medium">
-                        <FiLoader className="animate-spin mr-2" size={20} />
+                    <div className="mt-3 flex items-center text-cyan-500 font-medium">
+                        <BiLoaderAlt className="animate-spin mr-2" size={24} />
                         Waiting for transaction confirmation...
                     </div>
                 )}
 
                 {isConfirmed && (
                     <div className="mt-3 flex items-center text-green-600 font-medium">
-                        <FiCheckCircle size={20} className="mr-2" />
+                        <FaCheckCircle size={20} className="mr-2" />
                         Transaction confirmed successfully!
                     </div>
                 )}
 
                 {isError && (
-                    <div className="mt-3 p-3 bg-red-100 border-l-4 border-red-500 rounded flex items-start">
-                        <FiXCircle size={20} className="text-red-600 mr-2" />
+                    <div className="mt-3 flex items-center font-medium">
                         <div>
-                            <div className="text-red-600 font-semibold">Transaction Failed</div>
-                            <div className="">
+                            <div className="text-red-500 font-semibold">Transaction Failed</div>
+                            <div className="text-red-400">
                                 {failureReason
                                     ? `Reason: ${failureReason}`
                                     : error?.message || "An unknown error occurred."}

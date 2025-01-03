@@ -8,10 +8,10 @@ import Button from "../common/Button";
 import Error from "../common/Error";
 import TransactionConfirmation from "../common/TransactionConfirmation";
 
-const ApproveToken = ({spenderProp}: {spenderProp?: string}) => {
+const TransferToken = () => {
     const { address } = useAccount();
 
-    const [spender, setSpender] = React.useState<string>(spenderProp ? spenderProp : "");
+    const [recipient, setRecipient] = React.useState<string>("");
     const [amount, setAmount] = React.useState<string>("");
 
     const {
@@ -25,23 +25,22 @@ const ApproveToken = ({spenderProp}: {spenderProp?: string}) => {
         try {
             writeContract({
                 ...tokenConfig,
-                functionName: "approve",
-                args: [spender, amount],
+                functionName: "transfer",
+                args: [recipient, amount],
             });
         } catch (error) {
-            console.error("Error during approve transaction:", error);
+            console.error("Error during transfer transaction:", error);
         }
     }
 
     return (
         <Card>
-            <h2 className="text-2xl font-semibold mb-4">Approve Token Spending</h2>
+            <h2 className="text-2xl font-semibold mb-4">Transfer Tokens</h2>
             <Input
                 type="text"
-                placeholder="Spender Address"
-                value={spender}
-                onChange={(e) => setSpender(e.target.value)}
-                disabled={!!spenderProp}
+                placeholder="Recipient Address"
+                value={recipient}
+                onChange={(e) => setRecipient(e.target.value)}
             />
             <Input
                 type="number"
@@ -51,16 +50,16 @@ const ApproveToken = ({spenderProp}: {spenderProp?: string}) => {
                 min="0"
             />
             <Button
-                disabled={isPending || !address || !spender || !amount}
+                disabled={isPending || !address || !recipient || !amount}
                 onClick={submit}
                 isLoading={isPending}
             >
-                Approve
+                Transfer
             </Button>
-            <Error error={(error as BaseError)?.shortMessage || error?.message}/>
-            <TransactionConfirmation hash={hash}/>
+            <Error error={(error as BaseError)?.shortMessage || error?.message} />
+            <TransactionConfirmation hash={hash} />
         </Card>
     );
 };
 
-export default ApproveToken;
+export default TransferToken;

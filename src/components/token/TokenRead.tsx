@@ -1,7 +1,6 @@
 import { type BaseError, useAccount, useReadContracts } from 'wagmi';
 import Card from '../common/Card';
 import Error from '../common/Error';
-import Skeleton from 'react-loading-skeleton';
 import { tokenConfig } from '@/config/tokenConfig';
 import { TbRefresh } from 'react-icons/tb';
 
@@ -43,14 +42,17 @@ export default function TokenRead() {
 
         return (
             <div className="flex flex-col gap-4">
-                <TbRefresh
-                    size={30}
-                    onClick={onRefreshClick}
-                    className={`cursor-pointer ${isRefetching ? 'animate-spin' : ''}`}
-                    title="Refresh"
-                />
-                <span className='flex items-center gap-2'>Your Balance: {isPending || isRefetching ? <Skeleton height={7} width={100}/> : balance?.result?.toString() || 'N/A'}</span>
-                <span className='flex items-center gap-2'>Total Supply: {isPending || isRefetching ? <Skeleton height={7} width={100}/> : totalSupply?.result?.toString() || 'N/A'}</span>
+                <div className='flex gap-2 items-center'>
+                    <TbRefresh
+                        size={30}
+                        onClick={onRefreshClick}
+                        className={`cursor-pointer ${isRefetching ? 'animate-spin' : ''}`}
+                        title="Refresh"
+                    />
+                    Refresh
+                </div>
+                <span className='flex items-center gap-2'>Your Balance: {balance?.result?.toString() || 'N/A'}</span>
+                <span className='flex items-center gap-2'>Total Supply: {totalSupply?.result?.toString() || 'N/A'}</span>
             </div>
         );
     };

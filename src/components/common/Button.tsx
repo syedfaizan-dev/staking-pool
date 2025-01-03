@@ -31,6 +31,8 @@ type ButtonProps = {
   className?: string
   isLoading?: boolean
   rounded?: boolean
+  notificationCount?: number
+  shape?: 'diamond' | 'rectangle' | 'circle'
 }
 
 const Button: React.FC<ButtonProps> = ({
@@ -40,12 +42,18 @@ const Button: React.FC<ButtonProps> = ({
   disabled = false,
   className = '',
   isLoading = false,
-  rounded = true
+  notificationCount,
+  shape = 'rectangle'
 }) => {
   const baseStyles = `px-4 py-2 font-semibold transition-all duration-300 ease-in-out focus:outline-none focus:ring-2`
+  const shapeStyle: Record<string, string> = {
+    circle: 'rounded-full',
+    rectangle: 'rounded-lg',
+    diamond: ''
 
+  }
   const variantStyles: Record<string, string> = {
-    primary:    `bg-blue-600      hover:bg-blue-700     focus:ring-blue-500     text-blue-200`,
+    primary:    `bg-blue-500      hover:bg-blue-600     focus:ring-blue-400     text-blue-200`,
     secondary:  `bg-gray-600      hover:bg-gray-700     focus:ring-gray-500     text-gray-800`,
     danger:     `bg-red-600       hover:bg-red-700      focus:ring-red-500      text-red-100`,
     success:    `bg-green-600     hover:bg-green-700    focus:ring-green-500    text-green-800`,
@@ -70,16 +78,22 @@ const Button: React.FC<ButtonProps> = ({
   };
   
   const disabledStyles = `opacity-50 cursor-not-allowed`
-  const roundedStyles = `rounded-md`
 
   return (
-    <button
-      onClick={onClick}
-      className={`${baseStyles} ${variantStyles[variant]} ${rounded ? roundedStyles : ''} ${disabled ? disabledStyles : ''} ${className}`}
-      disabled={disabled}
-    >
-      {isLoading ? <CgSpinner className='animate-spin text-2xl' /> : children}
-    </button>
+    <div className="relative inline-block">
+      <button
+        onClick={onClick}
+        className={`${baseStyles} ${shapeStyle[shape]} ${variantStyles[variant]} ${disabled ? disabledStyles : ''} ${className}`}
+        disabled={disabled}
+      >
+        {isLoading ? <CgSpinner className='animate-spin text-2xl' /> : children}
+      </button>
+      {notificationCount !== undefined && (
+        <span className="absolute top-0 right-0 flex items-center justify-center w-5 h-5 bg-green-500 text-white text-xs font-bold rounded-full transform translate-x-1/2 -translate-y-1/2">
+          { notificationCount > 0 ? notificationCount : ""}
+        </span>
+      )}
+    </div>
   )
 }
 

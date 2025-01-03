@@ -20,10 +20,10 @@ export default function Page() {
     return (
         <>
             <div className="flex justify-center py-8">
-                <Card>
+                <Card className="w-3/5">
                     <h1 className="text-3xl font-semibold text-center mb-6">Staking Pools</h1>
                     <p className="text-center  mb-8">Choose a pool to stake your tokens and earn rewards based on your staking duration.</p>
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div className="flex justify-center gap-20">
                         <Button
                             onClick={openFixModal}
                             variant="frost"
@@ -44,22 +44,22 @@ export default function Page() {
                         <div className="mb-6">
                             <h3 className="text-xl font-semibold ">Fixed Pool:</h3>
                             <p className="">
-                                - Stake any amount greater than 0 tokens.<br />
-                                - After 2 days, you can claim your staked amount.<br />
-                                - Reward is 2 Tokens.<br />
-                                - Use <b>Get Reward</b> after 2 days to receive your reward.
+                                Stake any amount greater than 0 tokens.<br />
+                                After 2 days, you can claim your staked amount.<br />
+                                Reward is 2 Tokens.<br />
+                                Use <b>Get Reward</b> after 2 days to receive your reward.
                             </p>
                         </div>
                         <div className="mb-6">
                             <h3 className="text-xl font-semibold ">Flexible Pool:</h3>
                             <p className="">
-                                - Stake between 2 and 50 tokens.<br />
-                                - Only one stake is allowed at a time.<br />
-                                - The reward depends on the duration of the stake:<br />
+                                Stake between 2 and 50 tokens.<br />
+                                Only one stake is allowed at a time.<br />
+                                The reward depends on the duration of the stake:<br />
                                 &nbsp;&nbsp;&nbsp;• After 3-5 days: Receive a reward of 3 tokens.<br />
                                 &nbsp;&nbsp;&nbsp;• After 6-10 days: Receive a reward of 5 tokens.<br />
                                 &nbsp;&nbsp;&nbsp;• After 10+ days: Receive a reward of 7 tokens.<br />
-                                - Use <b>Get Reward</b> after the staking period to claim your tokens and rewards.
+                                Use <b>Get Reward</b> after the staking period to claim your tokens and rewards.
                             </p>
                         </div>
                     </div>
