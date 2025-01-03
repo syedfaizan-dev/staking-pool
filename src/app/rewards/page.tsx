@@ -128,7 +128,7 @@ export default function Page() {
                     <div className="flex flex-col gap-2">
                         <Button
                             onClick={submitForFixed}
-                            disabled={isClaimPending || !isRewardFixed?.result || isError || !!hash}
+                            disabled={isClaimPending || !isRewardFixed?.result || isError}
                             variant="cool"
                             notificationCount={isRewardFixed?.result ? 1 : undefined}
                         >
@@ -139,7 +139,7 @@ export default function Page() {
                     <div className="flex flex-col gap-2">
                         <Button
                             onClick={submitForFlexible}
-                            disabled={isClaimPending || !isRewardFlexible?.result || isError || !!hash}
+                            disabled={isClaimPending || !isRewardFlexible?.result || isError}
                             variant="pastel"
                             notificationCount={isRewardFlexible?.result ? 1 : undefined}
                         >

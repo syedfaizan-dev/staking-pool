@@ -42,11 +42,10 @@ export default function TokenRead() {
 
         return (
             <div className="flex flex-col gap-4">
-                <div className='flex gap-2 items-center'>
+                <div className='flex gap-2 items-center cursor-pointer w-fit' onClick={onRefreshClick}>
                     <TbRefresh
                         size={30}
-                        onClick={onRefreshClick}
-                        className={`cursor-pointer ${isRefetching ? 'animate-spin' : ''}`}
+                        className={`${isRefetching ? 'animate-spin' : ''}`}
                         title="Refresh"
                     />
                     Refresh

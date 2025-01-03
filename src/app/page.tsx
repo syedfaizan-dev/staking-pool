@@ -7,17 +7,17 @@ export default function Home() {
       <h1 className="text-5xl font-bold mt-10"> Welcome to Syed Faaiz Pools</h1>
       <div className="flex gap-8 justify-center">
         <Link href='/staking-pools'>
-          <Button variant="info" shape="circle" className="text-2xl py-5 px-7 hover:scale-125">
+          <Button variant="info" shape="circle" className="text-2xl py-5 px-7 hover:scale-110">
             Stake in Pools
           </Button>
         </Link>
         <Link href='/rewards'>
-          <Button variant="royal" shape="circle" className="text-2xl py-5 px-7 hover:scale-125">
+          <Button variant="royal" shape="circle" className="text-2xl py-5 px-7 hover:scale-110">
             Get Rewards
           </Button>
         </Link>
         <Link href='/rewards'>
-          <Button variant="neon" shape="circle" className="text-2xl py-5 px-7 hover:scale-125">
+          <Button variant="neon" shape="circle" className="text-2xl py-5 px-7 hover:scale-110">
             Buy PYROs
           </Button>
         </Link>

@@ -116,80 +116,74 @@ export default function StakingPool({
     await balanceRefetch();
   };
   return (
-    <div className="text-center">
-      <h2 className="text-2xl font-semibold mb-4">{title}</h2>
+    <>
+      <h2 className="text-2xl font-bold">{title}</h2>
       <p className="mb-6">{desc}</p>
-      <Input
-        type="number"
-        placeholder="Staking Amount"
-        onChange={handleChange}
-        value={amount}
-      />
-      <Button
-        variant="primary"
-        onClick={onStake}
-        disabled={
-          !amount ||
-          !address ||
-          isBalanceLoading ||
-          isAllowanceLoading ||
-          parseFloat(amount) > parseFloat(balance) ||
-          parseFloat(amount) > parseFloat(allowance)
-        }
-        isLoading={isPending}
-      >
-        Stake
-      </Button>
-      {parseFloat(amount) > parseFloat(balance) && (
-        <p className="text-red-500 mt-2">
-          You cannot stake more than your balance.
-        </p>
-      )}
-      {parseFloat(amount) > parseFloat(allowance) && (
-        <p className="text-red-500 mt-2">
-          You cannot stake more than your allowance.
-        </p>
-      )}
-      <div className="mt-12 flex flex-row gap-2 items-center cursor-pointer" onClick={onRefreshClick}>
-        <TbRefresh
-          size={30}
-          className={`${isAllowanceRefetching || isBalanceRefetching || isBalanceLoading || isAllowanceLoading ? 'animate-spin' : ''}`}
-          title="Refresh"
+
+      <div className="mb-4">
+        <Input
+          type="number"
+          placeholder="Enter staking amount"
+          onChange={handleChange}
+          value={amount}
         />
-        <span>Refresh</span>
       </div>
-      {/* New sections for Allowance and Balance */}
-      <div className="mt-4 grid grid-cols-1 md:grid-cols-2 gap-4">
-        {/* Allowance Section */}
-        <div className="p-4 border border-zinc-600 rounded-lg shadow-sm">
-          <h3 className="text-lg font-semibold mb-2">Your Allowance For Pool</h3>
-          <p className="text-gray-600">
-            <strong>{allowance}</strong>
+      <div className="flex justify-between mb-6">
+        <Button
+          variant="primary"
+          onClick={onStake}
+          disabled={
+            !amount ||
+            !address ||
+            isBalanceLoading ||
+            isAllowanceLoading ||
+            parseFloat(amount) > parseFloat(balance) ||
+            parseFloat(amount) > parseFloat(allowance)
+          }
+          isLoading={isPending}
+        >
+          Stake
+        </Button>
+        <div className="flex flex-row gap-2 items-center cursor-pointer" onClick={onRefreshClick}>
+          <TbRefresh
+            size={24}
+            className={`${isAllowanceRefetching || isBalanceRefetching || isBalanceLoading || isAllowanceLoading ? "animate-spin" : ""
+              }`}
+          />
+          <span>Refresh</span>
+        </div>
+      </div>
+      {parseFloat(amount) > parseFloat(balance) && (
+          <p className="text-red-500">
+            You cannot stake more than your balance.
           </p>
-          <p
-            className="text-cyan-400 cursor-pointer underline mt-2"
+        )}
+        {parseFloat(amount) > parseFloat(allowance) && (
+          <p className="text-red-500">
+            You cannot stake more than your allowance.
+          </p>
+        )}
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+        <div className="p-4 border border-zinc-500 rounded-lg shadow-sm">
+          <h3 className="text-lg font-semibold">Allowance</h3>
+          <p className="font-mono text-xl">{allowance}</p>
+          <div
+            className="text-blue-500 underline cursor-pointer"
             onClick={toggle}
           >
-            Approve more to stake more
-          </p>
+            Approve more
+          </div>
         </div>
 
-        {/* Balance Section */}
-        <div className="p-4 border border-zinc-600 rounded-lg shadow-sm">
-          <h3 className="text-lg font-semibold mb-2">Your Balance For PYRO Token</h3>
-          <p className="text-gray-600">
-            <strong>{balance}</strong>
-          </p>
-          <Link
-            href="/token"
-            className="text-cyan-400 cursor-pointer underline mt-2"
-          >
-            Buy more to stake more
+        <div className="p-4 border border-zinc-500 rounded-lg shadow-sm">
+          <h3 className="text-lg font-semibold">Balance</h3>
+          <p className="font-mono text-xl">{balance}</p>
+          <Link href="/token" className="text-blue-500 mt-2 underline">
+            Buy more
           </Link>
         </div>
       </div>
 
-      {/* Existing error and modal */}
       {error && (
         <Error error={(error as BaseError)?.shortMessage || error?.message} />
       )}
@@ -197,7 +191,6 @@ export default function StakingPool({
       <Modal isOpen={isOpen} onClose={toggle}>
         <ApproveToken spenderProp={poolConfig.address} />
       </Modal>
-    </div>
+    </>
   );
-
 }

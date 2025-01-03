@@ -29,7 +29,7 @@ export default function TransactionConfirmation(
         if (isConfirmed && onConfirmation) {
             onConfirmation();
         }
-    }, [isConfirmed, onConfirmation]);
+    }, [isConfirmed]);
     return (
         hash && (
             <div className="mt-5 p-4 border border-gray-600 rounded-lg max-w-full overflow-hidden relative">
@@ -54,8 +54,8 @@ export default function TransactionConfirmation(
                 </div>
 
                 {isConfirming && (
-                    <div className="mt-3 flex items-center text-cyan-500 font-medium">
-                        <BiLoaderAlt className="animate-spin mr-2" size={24} />
+                    <div className="mt-3 flex items-center text-yellow-400 font-medium">
+                        <BiLoaderAlt className="animate-spin mr-2" size={22} />
                         Waiting for transaction confirmation...
                     </div>
                 )}
