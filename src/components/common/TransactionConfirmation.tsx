@@ -3,6 +3,7 @@ import { FiLoader, FiCheckCircle, FiXCircle, FiCopy } from "react-icons/fi";
 import { useEffect, useState } from "react";
 import { FaCheckCircle } from "react-icons/fa";
 import { BiLoaderAlt } from "react-icons/bi";
+import CopiableText from "./CopiableText";
 
 export default function TransactionConfirmation(
     { hash, onConfirmation }: 
@@ -16,15 +17,6 @@ export default function TransactionConfirmation(
         status
     } = useWaitForTransactionReceipt({ hash });
 
-    const [copied, setCopied] = useState<boolean>(false);
-
-    const copyToClipboard = () => {
-        if (hash) {
-            navigator.clipboard.writeText(hash);
-            setCopied(true);
-            setTimeout(() => setCopied(false), 1500);
-        }
-    };
     useEffect(() => {
         if (isConfirmed && onConfirmation) {
             onConfirmation();
@@ -37,21 +29,9 @@ export default function TransactionConfirmation(
                     <div className="font-semibold text-lg  flex items-center">
                         Transaction Status
                     </div>
-                    <div className="flex flex-row space-x-4">
-                        <button
-                            onClick={copyToClipboard}
-                            className="flex items-center"
-                            title="Copy to clipboard"
-                        >
-                            <FiCopy className="mr-1" />
-                            {copied ? "Copied!" : "Copy Hash"}
-                        </button>
-                    </div>
                 </div>
 
-                <div className="p-3 bg-zinc-800 rounded break-words text-sm">
-                    <strong>Transaction Hash:</strong> {hash}
-                </div>
+                <CopiableText title="Hash" text={hash} />
 
                 {isConfirming && (
                     <div className="mt-3 flex items-center text-yellow-400 font-medium">

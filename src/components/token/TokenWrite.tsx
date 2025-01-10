@@ -23,15 +23,14 @@ export default function TokenWrite() {
     async function submit() {
         writeContract({
             ...tokenConfig,
-            functionName: 'buyToken',
-            args: [],
-            value: BigInt(amount) * parseEther("0.000000000000000001")
+            functionName: 'mint',
+            args: [address!, amount],
         })
     }
 
     return (
         <Card>
-            <h2 className="text-2xl font-semibold mb-4">Buy PYRO Token</h2>
+            <h2 className="text-2xl font-semibold mb-4">Mint PYRO Token</h2>
             <Input
                 type="text"
                 placeholder="Amount"
@@ -43,7 +42,7 @@ export default function TokenWrite() {
                 onClick={submit}
                 isLoading={isPending}
             >
-                Buy Token
+                Mint
             </Button>
             <Error error={(error as BaseError)?.shortMessage || error?.message}/>
             

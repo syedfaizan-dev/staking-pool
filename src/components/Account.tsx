@@ -5,6 +5,7 @@ import Button from "./common/Button";
 import Card from "./common/Card";
 import { useState } from "react";
 import { FiCopy } from "react-icons/fi";
+import CopiableText from "./common/CopiableText";
 
 export function Account() {
   const { address, isConnected, connector, chain, status } = useAccount();
@@ -12,15 +13,6 @@ export function Account() {
   const { data: ensName } = useEnsName({ address });
   const { data: ensAvatar } = useEnsAvatar({ name: ensName! });
 
-  const [copied, setCopied] = useState<boolean>(false);
-
-  const copyToClipboard = () => {
-    if (address) {
-      navigator.clipboard.writeText(address);
-      setCopied(true);
-      setTimeout(() => setCopied(false), 1500);
-    }
-  };
   if (!isConnected) {
     return (
       <Card>
@@ -44,19 +36,7 @@ export function Account() {
           <h2 className="text-xl font-semibold">
             {ensName || "Unnamed Account"}
           </h2>
-          <div className="flex flex-row space-x-4">
-            <p>
-              {address?.slice(0, 6)}...{address?.slice(-4)}
-            </p>
-            <button
-              onClick={copyToClipboard}
-              className="flex items-center"
-              title="Copy to clipboard"
-            >
-              <FiCopy className="mr-1" />
-              {copied && "Copied!"}
-            </button>
-          </div>
+          <CopiableText title="Address" text={address}/>
         </div>
       </div>
 
